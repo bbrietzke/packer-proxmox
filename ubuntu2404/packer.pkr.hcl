@@ -152,7 +152,7 @@ build {
 
     provisioner "shell" {
         inline = [
-            "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done",
+            "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 10; done",
             "sudo rm /etc/ssh/ssh_host_*",
             "sudo truncate -s 0 /etc/machine-id",
             "sudo apt -y autoremove --purge",
@@ -179,8 +179,7 @@ build {
         inline = [ 
           "sudo cp /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg",
           "sudo cp /tmp/99-netconfig.cfg /etc/netplan/99-netconfig.yaml",
-          "sudo apt update",
-          "sudo apt -y full-upgrade",
+          "sudo chmod 600 /etc/netplan/99-netconfig.yaml"
         ]
     }
 }
