@@ -166,8 +166,8 @@ build {
     }    
 
     provisioner "file" {
-        source = "ubuntu2404/files/99-netconfig.yaml"
-        destination = "/tmp/99-netconfig.cfg"
+        source = "ubuntu2404/files/99-netcfg.yaml"
+        destination = "/tmp/99-netcfg.cfg"
     }
     
     provisioner "file" {
@@ -178,8 +178,8 @@ build {
     provisioner "shell" {
         inline = [ 
           "sudo cp /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg",
-          "sudo cp /tmp/99-netconfig.cfg /etc/netplan/99-netconfig.yaml",
-          "sudo chmod 600 /etc/netplan/99-netconfig.yaml"
+          "sudo cp /tmp/99-netcfg.cfg /etc/netplan/99-netcfg.yaml",
+          "sudo chmod 600 /etc/netplan/99-netcfg.yaml"
         ]
     }
 }
