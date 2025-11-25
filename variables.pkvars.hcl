@@ -13,6 +13,7 @@ vm_memory                   = "8192"
 vm_disk_size                = "32G"
 vm_storage_pool             = "local-lvm"
 vm_disk_format              = "raw"
+machine_id                  = "999999999"
 
 iso_storage_pool            = "local:iso"
 

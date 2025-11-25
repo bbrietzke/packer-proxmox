@@ -76,6 +76,11 @@ variable "ubuntu2404_iso" {
     description = "Path to the Ubuntu 24.04 ISO file"
 }
 
+variable "machine_id" {
+    type = string
+    description = "The VM_ID to create"
+}
+
 source "proxmox-iso" "ubuntu-server-noble-numbat" {
  
     proxmox_url   = "${var.proxmox_api_url}"
@@ -83,8 +88,9 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
     token      = "${var.proxmox_api_token_secret}"
 
     node = "${var.proxmox_node}"
-    vm_name = "ubuntu-server-noble-numbat"
-    template_description = "Noble Numbat"
+    vm_name                 = "ubuntu-server-noble-numbat"
+    vm_id                   = "${var.machine_id}" 
+    template_description    = "Noble Numbat"
 
     # Replace deprecated ISO parameters with boot_iso block
     boot_iso {
