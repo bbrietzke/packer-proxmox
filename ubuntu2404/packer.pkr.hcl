@@ -83,47 +83,48 @@ variable "machine_id" {
 
 source "proxmox-iso" "ubuntu-server-noble-numbat" {
  
-    proxmox_url   = "${var.proxmox_api_url}"
-    username      = "${var.proxmox_api_token_id}"
-    token      = "${var.proxmox_api_token_secret}"
+    proxmox_url                 = "${var.proxmox_api_url}"
+    username                    = "${var.proxmox_api_token_id}"
+    token                       = "${var.proxmox_api_token_secret}"
+    insecure_skip_tls_verify    = true
 
     node = "${var.proxmox_node}"
-    vm_name                 = "ubuntu-server-noble-numbat"
-    vm_id                   = "${var.machine_id}" 
-    template_description    = "Noble Numbat"
+    vm_name                     = "ubuntu-server-noble-numbat"
+    vm_id                       = "${var.machine_id}" 
+    template_description        = "Noble Numbat"
 
     # Replace deprecated ISO parameters with boot_iso block
     boot_iso {
-        iso_file            = "${var.ubuntu2404_iso}"
-        iso_storage_pool    = "${var.iso_storage_pool}"
-        unmount             = true
-        iso_checksum        = "none"
+        iso_file                = "${var.ubuntu2404_iso}"
+        iso_storage_pool        = "${var.iso_storage_pool}"
+        unmount                 = true
+        iso_checksum            = "none"
     }
     
-    template_name = "packer-ubuntu2404"
+    template_name               = "packer-ubuntu2404"
 
-    qemu_agent = true
+    qemu_agent                  = true
 
-    scsi_controller = "virtio-scsi-single"
+    scsi_controller             = "virtio-scsi-single"
 
     disks {
-        disk_size = "${var.vm_disk_size}"
-        format = "${var.vm_disk_format}"
-        storage_pool = "${var.vm_storage_pool}"
-        type = "scsi"
+        disk_size               = "${var.vm_disk_size}"
+        format                  = "${var.vm_disk_format}"
+        storage_pool            = "${var.vm_storage_pool}"
+        type                    = "scsi"
     }
 
-    cores = "${var.vm_cores}"
-    memory = "${var.vm_memory}" 
-    cpu_type = "host"
+    cores                       = "${var.vm_cores}"
+    memory                      = "${var.vm_memory}" 
+    cpu_type                    = "host"
     network_adapters {
-        model = "virtio"
-        bridge = "vmbr0"
-        firewall = "false"
+        model                   = "virtio"
+        bridge                  = "vmbr0"
+        firewall                = "false"
     } 
 
-    cloud_init = true
-    cloud_init_storage_pool = "${var.vm_storage_pool}"
+    cloud_init                  = true
+    cloud_init_storage_pool     = "${var.vm_storage_pool}"
     
     boot_command = [
         "<esc><wait>",
@@ -133,8 +134,8 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
         "autoinstall ds=nocloud-net\\;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ ---<wait>",
         "<f10><wait>"
     ]
-    boot = "c"
-    boot_wait = "5s"
+    boot                    = "c"
+    boot_wait               = "5s"
 
     # Use templatefile function to process the user-data template with variables
     http_content = {
@@ -146,9 +147,9 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
         })
     }
 
-    ssh_username = "ubuntu"
-    ssh_password = "${var.root_password}"
-    ssh_timeout = "20m"
+    ssh_username            = "ubuntu"
+    ssh_password            = "${var.root_password}"
+    ssh_timeout             = "20m"
 }
 
 build {
