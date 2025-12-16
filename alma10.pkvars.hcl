@@ -3,18 +3,18 @@ proxmox_api_token_id        = "root@pam!packer"
 proxmox_api_token_secret    = "2ed0814b-ca0f-4ad8-a58d-7996f3abd74d"
 proxmox_node                = "pve0"
 
-root_password               = "password"
+root_password               = "almalinux"
 timezone                    = "US/Chicago"
 
 ssh_public_key              = "SSH_KEY"
 
 vm_cores                    = "2"
 vm_memory                   = "8192"
-vm_disk_size                = "32G"
+vm_disk_size                = "16G"
 vm_storage_pool             = "local-lvm"
 vm_disk_format              = "raw"
-machine_id                  = "999999999"
+machine_id                  = "999999998"
 
 iso_storage_pool            = "local:iso"
 
-ubuntu2404_iso              = "local:iso/ubuntu-24.04.3-live-server-amd64.iso"
+installation_iso            = "local:iso/AlmaLinux-10.1-x86_64-minimal.iso"
