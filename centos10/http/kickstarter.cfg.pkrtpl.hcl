@@ -1,12 +1,12 @@
 # AlmaLinux OS 10 kickstart file for Cloud-init included and OpenStack compatible Generic Cloud images with unified (BIOS+UEFI) boot on x86_64
 
-url --url https://repo.almalinux.org/almalinux/10/BaseOS/x86_64/os
+url --url='https://download.rockylinux.org/pub/rocky/10/BaseOS/x86_64/os/'
 text
 lang en_US.UTF-8
 keyboard us
-timezone America/Chicago --utc
+timezone ${timezone} --utc
 selinux --enforcing
-firewall --disabled
+firewall --enabled --service=ssh
 services --enabled=sshd
 
 bootloader --timeout=0 --location=mbr --append="console=tty0 console=ttyS0,115200n8 no_timer_check net.ifnames=0"
@@ -24,13 +24,15 @@ part /boot/efi --fstype=efi --onpart=sda2
 part /boot --fstype=xfs --onpart=sda3
 part / --fstype=xfs --onpart=sda4
 
-rootpw --plaintext almalinux
+rootpw --plaintext ${root_password}
 reboot --eject
 
 %packages --exclude-weakdeps --inst-langs=en
 cloud-init
 qemu-guest-agent
 openssh-server
+openssh
+openssh-clients
 dracut-config-generic
 grub2-pc
 tar
@@ -58,5 +60,8 @@ fi
 echo "PermitRootLogin yes" > /etc/ssh/sshd_config.d/01-permitrootlogin.conf
 
 systemctl enable cloud-init
+
+systemctl enable sshd
+systemctl start sshd
 
 %end

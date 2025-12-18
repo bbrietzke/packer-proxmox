@@ -1,8 +1,8 @@
 proxmox_storage_pool = 
 
-.PHONY: ubuntu2404 all alma10 rocky10
+.PHONY: ubuntu2404 all alma10 rocky10 centos10
 
-all: ubuntu2404 alma10 rocky10
+all: ubuntu2404 alma10 rocky10 centos10
 
 ubuntu2404:
 	packer init ubuntu2404/packer.pkr.hcl
@@ -14,4 +14,8 @@ alma10:
 
 rocky10:
 	packer init rocky10/
-	PACKER_LOG=1 packer build -var-file rocky10.pkvars.hcl rocky10/
+	packer build -var-file rocky10.pkvars.hcl rocky10/
+
+centos10:
+	packer init centos10/
+	PACKER_LOG=1 packer build -debug -var-file centos10.pkvars.hcl centos10/
