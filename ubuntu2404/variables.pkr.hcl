@@ -63,7 +63,7 @@ variable "iso_storage_pool" {
     description = "Storage pool for ISO files"
 }
 
-variable "centos_iso" {
+variable "ubuntu_iso" {
     type = string
     description = "Path to the ISO file to install"
 }

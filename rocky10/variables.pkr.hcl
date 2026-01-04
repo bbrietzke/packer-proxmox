@@ -1,11 +1,3 @@
-packer {
-  required_plugins {
-    name = {
-      version = "~> 1.2.3"
-      source  = "github.com/hashicorp/proxmox"
-    }
-  }
-}
 
 # Variable Definitions
 variable "proxmox_api_url" {
@@ -66,12 +58,17 @@ variable "vm_disk_format" {
     description = "Disk format (raw, qcow2, etc.)"
 }
 
+variable "cpu_type" {
+    type = string
+    description = "Type of CPU"
+}
+
 variable "iso_storage_pool" {
     type = string
     description = "Storage pool for ISO files"
 }
 
-variable "installation_iso" {
+variable "rocky_iso" {
     type = string
     description = "Path to the ISO file to install"
 }

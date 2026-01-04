@@ -1,6 +1,6 @@
-# AlmaLinux OS 10 kickstart file for Cloud-init included and OpenStack compatible Generic Cloud images with unified (BIOS+UEFI) boot on x86_64
+# Centos OS 10 kickstart file for Cloud-init included and OpenStack compatible Generic Cloud images with unified (BIOS+UEFI) boot on x86_64
 
-url --url='https://download.rockylinux.org/pub/rocky/10/BaseOS/x86_64/os/'
+#url --url='https://download.rockylinux.org/pub/rocky/10/BaseOS/x86_64/os/'
 text
 lang en_US.UTF-8
 keyboard us

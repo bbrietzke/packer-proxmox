@@ -1,11 +1,4 @@
-packer {
-  required_plugins {
-    name = {
-      version = "~> 1.2.3"
-      source  = "github.com/hashicorp/proxmox"
-    }
-  }
-}
+
 
 # Variable Definitions
 variable "proxmox_api_url" {
@@ -71,7 +64,7 @@ variable "iso_storage_pool" {
     description = "Storage pool for ISO files"
 }
 
-variable "installation_iso" {
+variable "alma_iso" {
     type = string
     description = "Path to the ISO file to install"
 }
@@ -79,4 +72,9 @@ variable "installation_iso" {
 variable "machine_id" {
     type = string
     description = "The VM_ID to create"
+}
+
+variable "cpu_type" {
+    type = string
+    description = "Type of CPU"
 }

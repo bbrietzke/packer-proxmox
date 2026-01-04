@@ -7,80 +7,6 @@ packer {
   }
 }
 
-# Variable Definitions
-variable "proxmox_api_url" {
-    type = string
-}
-
-variable "proxmox_api_token_id" {
-    type = string
-}
-
-variable "proxmox_api_token_secret" {
-    type = string
-    sensitive = true
-}
-
-variable "proxmox_node" {
-    type = string
-}
-
-variable "root_password" {
-    type = string
-    sensitive = true
-    description = "Unencrypted root password for the VM"
-}
-
-variable "timezone" {
-    type = string
-    description = "Timezone for the VM"
-}
-
-variable "ssh_public_key" {
-    type = string
-    description = "SSH public key to add to root account"
-}
-
-variable "vm_cores" {
-    type = string
-    description = "Number of CPU cores for the VM"
-}
-
-variable "vm_memory" {
-    type = string
-    description = "Amount of memory for the VM in MB"
-}
-
-variable "vm_disk_size" {
-    type = string
-    description = "Disk size for the VM"
-}
-
-variable "vm_storage_pool" {
-    type = string
-    description = "Storage pool for VM disk"
-}
-
-variable "vm_disk_format" {
-    type = string
-    description = "Disk format (raw, qcow2, etc.)"
-}
-
-variable "iso_storage_pool" {
-    type = string
-    description = "Storage pool for ISO files"
-}
-
-variable "ubuntu2404_iso" {
-    type = string
-    description = "Path to the Ubuntu 24.04 ISO file"
-}
-
-variable "machine_id" {
-    type = string
-    description = "The VM_ID to create"
-}
-
 source "proxmox-iso" "ubuntu-server-noble-numbat" {
  
     proxmox_url                 = "${var.proxmox_api_url}"
@@ -89,13 +15,12 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
     insecure_skip_tls_verify    = true
 
     node = "${var.proxmox_node}"
-    vm_name                     = "ubuntu-server-noble-numbat"
+    vm_name                     = "ubuntu-${formatdate("YYYYMMDD", timestamp())}"
     vm_id                       = "${var.machine_id}" 
     template_description        = "Noble Numbat"
 
-    # Replace deprecated ISO parameters with boot_iso block
     boot_iso {
-        iso_file                = "${var.ubuntu2404_iso}"
+        iso_file                = "${var.ubuntu_iso}"
         iso_storage_pool        = "${var.iso_storage_pool}"
         unmount                 = true
         iso_checksum            = "none"
@@ -116,7 +41,8 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
 
     cores                       = "${var.vm_cores}"
     memory                      = "${var.vm_memory}" 
-    cpu_type                    = "host"
+    cpu_type                    = "${var.cpu_type}"
+
     network_adapters {
         model                   = "virtio"
         bridge                  = "vmbr0"

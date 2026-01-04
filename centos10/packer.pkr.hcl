@@ -12,9 +12,8 @@ source "proxmox-iso" "centos10" {
     vm_id                       = "${var.machine_id}" 
     template_description        = "Centos Stream 10"
 
-    # Replace deprecated ISO parameters with boot_iso block
     boot_iso {
-        iso_file                = "${var.installation_iso}"
+        iso_file                = "${var.centos_iso}"
         iso_storage_pool        = "${var.iso_storage_pool}"
         unmount                 = true
         iso_checksum            = "none"
@@ -35,7 +34,8 @@ source "proxmox-iso" "centos10" {
 
     cores                       = "${var.vm_cores}"
     memory                      = "${var.vm_memory}" 
-    cpu_type                    = "host"
+    cpu_type                    = "${var.cpu_type}"
+
     network_adapters {
         model                   = "virtio"
         bridge                  = "vmbr0"
