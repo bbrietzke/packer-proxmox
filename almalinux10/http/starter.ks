@@ -24,7 +24,7 @@ part /boot/efi --fstype=efi --onpart=sda2
 part /boot --fstype=xfs --onpart=sda3
 part / --fstype=xfs --onpart=sda4
 
-rootpw --plaintext almalinux
+rootpw --plaintext password
 reboot --eject
 
 %packages --exclude-weakdeps --inst-langs=en
@@ -58,5 +58,6 @@ fi
 echo "PermitRootLogin yes" > /etc/ssh/sshd_config.d/01-permitrootlogin.conf
 
 systemctl enable cloud-init
+systemctl enable qemu-guest-agent
 
 %end

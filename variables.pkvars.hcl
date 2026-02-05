@@ -1,6 +1,6 @@
-proxmox_api_url             = "https://192.168.1.7:8006/api2/json"
+proxmox_api_url             = "https://pve.faultycloud.io/api2/json"
 proxmox_api_token_id        = "root@pam!packer"
-proxmox_api_token_secret    = "8f4b085b-a81e-4231-8007-11436bed84b0"
+proxmox_api_token_secret    = "df8bf184-cd92-4053-9312-2a4c88e261f3"
 proxmox_node                = "PVE00"
 
 root_password               = "password"

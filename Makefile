@@ -1,7 +1,11 @@
 
-.PHONY: ubuntu2404 all alma10 rocky10 centos10
+.PHONY: ubuntu2404 all alma10 rocky10 centos10 kube
 
-all: ubuntu2404 alma10 rocky10 centos10
+all: ubuntu2404 alma10 rocky10 centos10 kube
+
+kube:
+	packer init ubuntu_kube/packer.pkr.hcl
+	packer build -var-file variables.pkvars.hcl -var "machine_id=999999995" ubuntu_kube/
 
 ubuntu2404:
 	packer init ubuntu2404/packer.pkr.hcl
