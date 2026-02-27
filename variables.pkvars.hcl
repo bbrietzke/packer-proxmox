@@ -17,7 +17,7 @@ cpu_type                    = "x86-64-v3"
 
 iso_storage_pool            = "local:iso"
 
-ubuntu_iso                  = "local:iso/ubuntu-24.04.3-live-server-amd64.iso"
+ubuntu_iso                  = "local:iso/ubuntu-24.04.4-live-server-amd64.iso"
 rocky_iso                   = "local:iso/Rocky-10.1-x86_64-minimal.iso"
 centos_iso                  = "local:iso/CentOS-Stream-10-latest-x86_64-dvd1.iso"
 alma_iso                    = "local:iso/AlmaLinux-10.1-x86_64-minimal.iso"

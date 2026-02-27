@@ -26,7 +26,7 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
         iso_checksum            = "none"
     }
     
-    template_name               = "ubuntu24.04.3-${formatdate("YYYYMMDD", timestamp())}"
+    template_name               = "ubuntu24.04.4-${formatdate("YYYYMMDD", timestamp())}"
 
     qemu_agent                  = true
 
