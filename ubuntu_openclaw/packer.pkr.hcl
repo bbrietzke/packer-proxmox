@@ -26,7 +26,7 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
         iso_checksum            = "none"
     }
     
-    template_name               = "ubuntu24.04.4-${formatdate("YYYYMMDD", timestamp())}"
+    template_name               = "openclaw-${formatdate("YYYYMMDD", timestamp())}"
 
     qemu_agent                  = true
 
@@ -82,6 +82,19 @@ build {
 
     name = "ubuntu-server-noble-numbat"
     sources = ["proxmox-iso.ubuntu-server-noble-numbat"]
+
+    provisioner "shell" {
+        inline = [
+            "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"",
+            "echo >> /home/ubuntu/.bashrc",
+            "echo 'eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)\"' >> /home/ubuntu/.bashrcc",
+            "eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)\"",
+            "curl -fsSL https://ollama.com/install.sh | sh",
+            "curl -fsSL https://openclaw.ai/install.sh | bash -s -- --no-onboard",
+            "sudo apt -y install build-essential clang",
+            "/home/linuxbrew/.linuxbrew/bin/brew install gcc"
+        ]
+    }
 
     provisioner "shell" {
         inline = [

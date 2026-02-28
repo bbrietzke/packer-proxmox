@@ -22,3 +22,7 @@ rocky10:
 centos10:
 	packer init centos10/
 	packer build -var-file variables.pkvars.hcl -var "machine_id=999999996"  centos10/
+
+openclaw:
+	packer init ubuntu_openclaw/packer.pkr.hcl
+	packer build -var-file variables.pkvars.hcl -var "machine_id=999999994" ubuntu_openclaw/

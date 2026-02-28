@@ -14,7 +14,7 @@ source "proxmox-iso" "ubuntu-server-kubernetes" {
     token                       = "${var.proxmox_api_token_secret}"
     insecure_skip_tls_verify    = true
 
-    node = "${var.proxmox_node}"
+    node                        = "${var.proxmox_node}"
     vm_name                     = "kubernetes-${formatdate("YYYYMMDD", timestamp())}"
     vm_id                       = "${var.machine_id}" 
     template_description        = "Kubernetes 1.35.x"
