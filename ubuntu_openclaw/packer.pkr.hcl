@@ -91,7 +91,7 @@ build {
             "eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)\"",
             "curl -fsSL https://ollama.com/install.sh | sh",
             "curl -fsSL https://openclaw.ai/install.sh | bash -s -- --no-onboard",
-            "sudo apt -y install build-essential clang",
+            "sudo apt -y install build-essential clang restic",
             "/home/linuxbrew/.linuxbrew/bin/brew install gcc"
         ]
     }
