@@ -1,7 +1,7 @@
 
 .PHONY: ubuntu2404 all alma10 rocky10 centos10 kube
 
-all: ubuntu2404 alma10 rocky10 centos10 kube
+all: ubuntu2404 alma10 rocky10 centos10 kube openclaw
 
 kube:
 	packer init ubuntu_kube/packer.pkr.hcl

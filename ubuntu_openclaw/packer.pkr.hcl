@@ -85,14 +85,17 @@ build {
 
     provisioner "shell" {
         inline = [
+            "sudo apt -y install build-essential clang restic",
             "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"",
             "echo >> /home/ubuntu/.bashrc",
             "echo 'eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)\"' >> /home/ubuntu/.bashrcc",
             "eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)\"",
+            "/home/linuxbrew/.linuxbrew/bin/brew install gcc",
             "curl -fsSL https://ollama.com/install.sh | sh",
-            "curl -fsSL https://openclaw.ai/install.sh | bash -s -- --no-onboard",
-            "sudo apt -y install build-essential clang restic",
-            "/home/linuxbrew/.linuxbrew/bin/brew install gcc"
+            "curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -",
+            "sudo apt update && sudo apt install nodejs -y",
+            "sudo npm install -g npm@latest",
+            "sudo SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install -g openclaw@latest",
         ]
     }
 
