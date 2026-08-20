@@ -17,7 +17,7 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
     node                        = "${var.proxmox_node}"
     vm_name                     = "ubuntu-${formatdate("YYYYMMDD", timestamp())}"
     vm_id                       = "${var.machine_id}" 
-    template_description        = "Noble Numbat"
+    template_description        = "Resolute Raccoon"
 
     boot_iso {
         iso_file                = "${var.ubuntu_iso}"
@@ -26,7 +26,7 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
         iso_checksum            = "none"
     }
     
-    template_name               = "openclaw-${formatdate("YYYYMMDD", timestamp())}"
+    template_name               = "ubuntu26.04-${formatdate("YYYYMMDD", timestamp())}"
 
     qemu_agent                  = true
 
@@ -82,22 +82,6 @@ build {
 
     name = "ubuntu-server-noble-numbat"
     sources = ["proxmox-iso.ubuntu-server-noble-numbat"]
-
-    provisioner "shell" {
-        inline = [
-            "sudo apt -y install build-essential clang restic",
-            "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"",
-            "echo >> /home/ubuntu/.bashrc",
-            "echo 'eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)\"' >> /home/ubuntu/.bashrcc",
-            "eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)\"",
-            "/home/linuxbrew/.linuxbrew/bin/brew install gcc",
-            "curl -fsSL https://ollama.com/install.sh | sh",
-            "curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -",
-            "sudo apt update && sudo apt install nodejs -y",
-            "sudo npm install -g npm@latest",
-            "sudo SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install -g openclaw@latest",
-        ]
-    }
 
     provisioner "shell" {
         inline = [
