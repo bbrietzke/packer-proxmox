@@ -3,10 +3,6 @@
 
 all: ubuntu2604 ubuntu2404 alma10 rocky10 centos10 kube openclaw
 
-kube:
-	packer init ubuntu_kube/packer.pkr.hcl
-	packer build -var-file variables.pkvars.hcl -var "machine_id=999999995" ubuntu_kube/
-
 ubuntu2404:
 	packer init ubuntu2404/packer.pkr.hcl
 	packer build -var-file variables.pkvars.hcl -var "machine_id=999999999" ubuntu2404/
@@ -25,7 +21,11 @@ rocky10:
 
 centos10:
 	packer init centos10/
-	packer build -var-file variables.pkvars.hcl -var "machine_id=999999994"  centos10/
+	packer build -var-file variables.pkvars.hcl -var "machine_id=999999995"  centos10/
+
+kube:
+	packer init ubuntu_kube/packer.pkr.hcl
+	packer build -var-file variables.pkvars.hcl -var "machine_id=999999994" ubuntu_kube/
 
 openclaw:
 	packer init ubuntu_openclaw/packer.pkr.hcl

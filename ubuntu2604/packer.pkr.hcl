@@ -7,7 +7,7 @@ packer {
   }
 }
 
-source "proxmox-iso" "ubuntu-server-noble-numbat" {
+source "proxmox-iso" "ubuntu-server-resolute-raccoon" {
  
     proxmox_url                 = "${var.proxmox_api_url}"
     username                    = "${var.proxmox_api_token_id}"
@@ -80,8 +80,8 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
 
 build {
 
-    name = "ubuntu-server-noble-numbat"
-    sources = ["proxmox-iso.ubuntu-server-noble-numbat"]
+    name = "ubuntu-server-resolute-raccoon"
+    sources = ["proxmox-iso.ubuntu-server-resolute-raccoon"]
 
     provisioner "shell" {
         inline = [
@@ -99,12 +99,12 @@ build {
     }    
 
     provisioner "file" {
-        source = "ubuntu2404/files/99-netcfg.yaml"
+        source = "ubuntu2604/files/99-netcfg.yaml"
         destination = "/tmp/99-netcfg.cfg"
     }
     
     provisioner "file" {
-        source = "ubuntu2404/files/99-pve.cfg"
+        source = "ubuntu2604/files/99-pve.cfg"
         destination = "/tmp/99-pve.cfg"
     }
 

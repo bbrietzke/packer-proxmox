@@ -17,7 +17,7 @@ source "proxmox-iso" "ubuntu-server-kubernetes" {
     node                        = "${var.proxmox_node}"
     vm_name                     = "kubernetes-${formatdate("YYYYMMDD", timestamp())}"
     vm_id                       = "${var.machine_id}" 
-    template_description        = "Kubernetes 1.35.x"
+    template_description        = "Kubernetes 1.36.x"
 
     boot_iso {
         iso_file                = "${var.ubuntu_iso}"
